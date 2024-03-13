@@ -1,107 +1,135 @@
+## Abstract
+
 This writeup explains how to configure your pi5 (from scratch) to allow ethernet over a USB-C to USB-C cable.  This allows you (for example) to plug your pi5 directly into a USB-C iPad or iPhone or Mac to both power it as well as connect to it over SSH **WITHOUT** requiring wifi.
 
-As of 2024-03-13, here are the steps to get everything working from "scratch":
+## Process
 
-1. Download and run the "Raspberry Pi Imager" (version at the time of this writing is v1.8.5)
+### As of 2024-03-13, here are the steps to get everything working from "scratch":
 
-2. Raspberry Pi Device: Raspberry Pi 5, Operating System: Raspberry Pi OS (64-bit), Storage: Micro SD card
+### 1. Download and run the "Raspberry Pi Imager" (version at the time of this writing is v1.8.5)
 
-3. OS Customization: Edit Settings
+### 2. Raspberry Pi Device: Raspberry Pi 5, Operating System: Raspberry Pi OS (64-bit), Storage: Micro SD card
 
-4. Set your hostname, username and password, wireless LAN, and Locale settings
+### 3. OS Customization: Edit Settings
 
-5. Choose "Yes" to apply your OS customization settings
+### 4. Set your hostname, username and password, wireless LAN, and Locale settings
 
-6. Confirm you want to continue (assuming it is correctly listing your micro SD card) by clicking "Yes"
+### 5. Choose "Yes" to apply your OS customization settings
 
-7. Wait for the write and the verification to finish
+### 6. Confirm you want to continue (assuming it is correctly listing your micro SD card) by clicking "Yes"
 
-8. Plug the micro SD card into your pi5 and then use a high quality USB-C to USB-C cable to connect it to your iPad Pro (or other USB-C iOS device)
+### 7. Wait for the write and the verification to finish
 
-  Note - I used this cable, which I quite like because it is very short, but also very fast and capable of charging at high rates of speed:
+### 8. Plug the micro SD card into your pi5 and then use a high quality USB-C to USB-C cable to connect it to your iPad Pro (or other USB-C iOS device)
 
-  OWC Thunderbolt 4 Cable: https://www.amazon.com/dp/B0BLXLSDN5?ref=ppx_pop_mob_ap_share
+```
+Note - I used this cable, which I quite like because it is very short, but also very fast and capable of charging at high rates of speed:
 
-10. Using an iOS app like "Blink" (or truly ANY SSH app), ssh into your pi5 using your previously (step 4) wifi and username/password settings.
+[OWC Thunderbolt 4 Cable:] (https://www.amazon.com/dp/B0BLXLSDN5?ref=ppx_pop_mob_ap_share)
+```
 
-  Note #1 - For the uninitiated, you can use the hostname you set up in step 4 above postpended with ".local".  So if the hostname you configured was "pi5", you would type "ssh username@pi5.local" (where username is whatever you provided in step #4 above) in "Blink" to connect...
+### 9. Using an iOS app like "Blink" (or truly ANY SSH app), ssh into your pi5 using your previously (step 4) wifi and username/password settings.
+
+```
+Note #1 - For the uninitiated, you can use the hostname you set up in step 4 above postpended with ".local".  So if the hostname you configured was "pi5", you would type "ssh username@pi5.local" (where username is whatever you provided in step #4 above) in "Blink" to connect...
   
-  Note #2 - Your initial connection will need you to trust the host key.  So beware that this is a one time aspect of this connection...
+Note #2 - Your initial connection will need you to trust the host key.  So beware that this is a one time aspect of this connection...
+```
 
-12. Type "sudo bash" so that you can have elevated privileges for the remaining steps in this guide
+### 10. Type "sudo bash" so that you can have elevated privileges for the remaining steps in this guide
 
-    Note - Alternatively you can pre-pend "sudo " to the front of all the commands in this guide
+```
+Note - Alternatively you can pre-pend "sudo " to the front of all the commands in this guide
+```
 
-14. Edit (this guide assumes you are familiar with either vi or nano) the file /boot/firmware/cmdline.txt and add the following just AFTER "rootwait":
+### 11. Edit (this guide assumes you are familiar with either vi or nano) the file /boot/firmware/cmdline.txt and add the following just AFTER "rootwait":
 
-  modules-load=dwc2,g_ether
+```
+modules-load=dwc2,g_ether
+```
 
-14. Edit (again, pick either vi or nano) the file /boot/firmware/config.txt and confirm it has an UNCOMMENTED line near the end that is "otg_mode=1".  Then add below the line "[all]" (it HAS to be after the "[all]" line for it to work properly) the following:
+### 12. Edit (again, pick either vi or nano) the file /boot/firmware/config.txt and confirm it has an UNCOMMENTED line near the end that is "otg_mode=1".  Then add below the line "[all]" (it HAS to be after the "[all]" line for it to work properly) the following:
 
-  dtoverlay=dwc2
+```
+dtoverlay=dwc2
+```
 
-15. Now we need to add our connection name by running the following command:
+### 13. Now we need to add our connection name by running the following command:
 
-    nmcli con add type ethernet con-name ethernet-usb0
+```
+nmcli con add type ethernet con-name ethernet-usb0
+```
     
-16. Now edit the file we just created (using vi or nano) named /etc/NetworkManager/system-connections/ethernet-usb0.nmconnection
+### 14. Now edit the file we just created (using vi or nano) named /etc/NetworkManager/system-connections/ethernet-usb0.nmconnection
 
-  Note - You will be adding the lines for autoconnect and interface-name, and then modifying the line with "method=" to change auto to "shared":
+- Note - You will be adding the lines for autoconnect and interface-name, and then modifying the line with "method=" to change auto to "shared":
 
-  [connection]
-  id=ethernet-usb0
-  uuid=<random group of characters here>
-  type=ethernet
-  autoconnect=true
-  interface-name=usb0
+```
+[connection]
+id=ethernet-usb0
+uuid=<random group of characters here>
+type=ethernet
+autoconnect=true
+interface-name=usb0
   
-  [ethernet]
+[ethernet]
   
-  [ipv4]
-  method=shared
+[ipv4]
+method=shared
   
-  [ipv6]
-  addr-gen-mode=default
-  method=auto
+[ipv6]
+addr-gen-mode=default
+method=auto
   
-  [proxy]
+[proxy]
+```
 
-17. Create yet another new file (again with vi or nano) at /usr/local/sbin/usb-gadget.sh with the following contents:
+### 15. Create yet another new file (again with vi or nano) at /usr/local/sbin/usb-gadget.sh with the following contents:
 
-  #!/bin/bash
+```
+#!/bin/bash
 
-  nmcli con up ethernet-usb0  
+nmcli con up ethernet-usb0
+```
 
-18. Make this new file executable with the following command:
+### 16. Make this new file executable with the following command:
 
-  chmod a+rx /usr/local/sbin/usb-gadget.sh
+```
+chmod a+rx /usr/local/sbin/usb-gadget.sh
+```
 
-19. Create your last new file (using vi or nano) named /lib/systemd/system/usbgadget.service with the following text:
+### 17. Create your last new file (using vi or nano) named /lib/systemd/system/usbgadget.service with the following text:
 
-  [Unit]
-  Description=My USB gadget
-  After=NetworkManager.service
-  Wants=NetworkManager.service
+```
+[Unit]
+Description=My USB gadget
+After=NetworkManager.service
+Wants=NetworkManager.service
   
-  [Service]
-  Type=oneshot
-  RemainAfterExit=yes
-  ExecStart=/usr/local/sbin/usb-gadget.sh
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/sbin/usb-gadget.sh
   
-  [Install]
-  WantedBy=sysinit.target
+[Install]
+WantedBy=sysinit.target
+```
 
-20. Run the following command to enable this new service:
+### 18. Run the following command to enable this new service:
 
-  systemctl enable usbgadget.service
+```
+systemctl enable usbgadget.service
+```
 
-21. Reboot your pi5 so all your changes can be put to use.  Run the following command to reboot it:
+### 19. Reboot your pi5 so all your changes can be put to use.  Run the following command to reboot it:
 
-  shutdown -r now
-  
-22. To make sure everything went as it should, on your iPad or iPhone, go into Settings and confirm that you an "Ethernet" device listed underneath "Wi-Fi" in settings.  Tap on it and make sure you have an assigned "IP Address" (ie, it isn't blank).  If you do not have an assigned IP address, then something went wrong in the steps above - double check **EVERYTHING**!
+```
+shutdown -r now
+```
 
-22. To test that this is working as expected, you can do the following:
+### 20. To make sure everything went as it should, on your iPad or iPhone, go into Settings and confirm that you an "Ethernet" device listed underneath "Wi-Fi" in settings.  Tap on it and make sure you have an assigned "IP Address" (ie, it isn't blank).  If you do not have an assigned IP address, then something went wrong in the steps above - double check **EVERYTHING**!
+
+### 21. To test that this is working as expected, you can do the following:
 
   a. Turn Airplane mode on (and confirm you don't have wifi enabled) to ensure you could only be using the USB-C to USB-C cable connected to your pi5 for the following steps
   
@@ -111,7 +139,7 @@ As of 2024-03-13, here are the steps to get everything working from "scratch":
   
   d. Profit?   :)
 
-**Some background on what lead to me doing this writeup:**
+## Background Info
 
 After "much success" with my pi4, I bought a pi5 and expected things to be more performant but just as smooth to set up.  I couldn't have been more wrong....
 
