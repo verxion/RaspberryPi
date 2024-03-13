@@ -22,19 +22,19 @@ As of 2024-03-13, here are the steps to get everything working from "scratch":
 
 8. Plug the micro SD card into your pi5 and then use a high quality USB-C to USB-C cable to connect it to your iPad Pro (or other USB-C iOS device)
 
-Note - I used this cable, which I quite like because it is very short, but also very fast and capable of charging at high rates of speed:
+- Note - I used this cable, which I quite like because it is very short, but also very fast and capable of charging at high rates of speed:
 
 [OWC Thunderbolt 4 Cable:] (https://www.amazon.com/dp/B0BLXLSDN5?ref=ppx_pop_mob_ap_share)
 
 9. Using an iOS app like "Blink" (or truly ANY SSH app), ssh into your pi5 using your previously (step 4) wifi and username/password settings.
 
-Note #1 - For the uninitiated, you can use the hostname you set up in step 4 above postpended with `.local`.  So if the hostname you configured was `pi5`, you would type `ssh username@pi5.local` (where username is whatever you provided in step #4 above) in `Blink` to connect...
+- Note #1 - For the uninitiated, you can use the hostname you set up in step 4 above postpended with `.local`.  So if the hostname you configured was `pi5`, you would type `ssh username@pi5.local` (where username is whatever you provided in step #4 above) in `Blink` to connect...
   
-Note #2 - Your initial connection will need you to trust the host key.  So beware that this is a one time aspect of this connection...
+- Note #2 - Your initial connection will need you to trust the host key.  So beware that this is a one time aspect of this connection...
 
 10. Type `sudo bash` so that you can have elevated privileges for the remaining steps in this guide
 
-Note - Alternatively you can pre-pend `sudo ` to the front of all the commands in this guide
+- Note - Alternatively you can pre-pend `sudo ` to the front of all the commands in this guide
 
 11. Edit (this guide assumes you are familiar with either vi or nano) the file `/boot/firmware/cmdline.txt` and add the following just AFTER "rootwait":
 
@@ -125,13 +125,13 @@ shutdown -r now
 
 21. To test that this is working as expected, you can do the following:
 
-  a. Turn Airplane mode on (and confirm you don't have wifi enabled) to ensure you could only be using the USB-C to USB-C cable connected to your pi5 for the following steps
+- Turn Airplane mode on (and confirm you don't have wifi enabled) to ensure you could only be using the USB-C to USB-C cable connected to your pi5 for the following steps
   
-  b. From `Blink` (or other iOS ssh app), connect to `<username>@<hostname>.local` where `<username>` and `<hostname>` are whatever you configured your pi5 with in step #4 above
+- From `Blink` (or other iOS ssh app), connect to `<username>@<hostname>.local` where `<username>` and `<hostname>` are whatever you configured your pi5 with in step #4 above
   
-  c. Confirm you can successfully connect.  If you can connect, then this means you can now power AND connect to your pi5 over a simple USB-C to USB-C cable, no Wi-Fi required!
+- Confirm you can successfully connect.  If you can connect, then this means you can now power AND connect to your pi5 over a simple USB-C to USB-C cable, no Wi-Fi required!
   
-  d. Profit?   :)
+- Profit?   :)
 
 # Background Info
 
