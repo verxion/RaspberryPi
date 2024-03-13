@@ -28,21 +28,21 @@ Note - I used this cable, which I quite like because it is very short, but also 
 
 9. Using an iOS app like "Blink" (or truly ANY SSH app), ssh into your pi5 using your previously (step 4) wifi and username/password settings.
 
-Note #1 - For the uninitiated, you can use the hostname you set up in step 4 above postpended with ".local".  So if the hostname you configured was "pi5", you would type "ssh username@pi5.local" (where username is whatever you provided in step #4 above) in "Blink" to connect...
+Note #1 - For the uninitiated, you can use the hostname you set up in step 4 above postpended with `.local`.  So if the hostname you configured was `pi5`, you would type `ssh username@pi5.local` (where username is whatever you provided in step #4 above) in `Blink` to connect...
   
 Note #2 - Your initial connection will need you to trust the host key.  So beware that this is a one time aspect of this connection...
 
-10. Type "sudo bash" so that you can have elevated privileges for the remaining steps in this guide
+10. Type `sudo bash` so that you can have elevated privileges for the remaining steps in this guide
 
-Note - Alternatively you can pre-pend "sudo " to the front of all the commands in this guide
+Note - Alternatively you can pre-pend `sudo ` to the front of all the commands in this guide
 
-11. Edit (this guide assumes you are familiar with either vi or nano) the file /boot/firmware/cmdline.txt and add the following just AFTER "rootwait":
+11. Edit (this guide assumes you are familiar with either vi or nano) the file `/boot/firmware/cmdline.txt` and add the following just AFTER "rootwait":
 
 ```
 modules-load=dwc2,g_ether
 ```
 
-12. Edit (again, pick either vi or nano) the file /boot/firmware/config.txt and confirm it has an UNCOMMENTED line near the end that is "otg_mode=1".  Then add below the line "[all]" (it HAS to be after the "[all]" line for it to work properly) the following:
+12. Edit (again, pick either vi or nano) the file `/boot/firmware/config.txt` and confirm it has an UNCOMMENTED line near the end that is `otg_mode=1`.  Then add below the line `[all]` (it HAS to be after the `[all]` line for it to work properly) the following:
 
 ```
 dtoverlay=dwc2
@@ -54,9 +54,9 @@ dtoverlay=dwc2
 nmcli con add type ethernet con-name ethernet-usb0
 ```
     
-14. Now edit the file we just created (using vi or nano) named /etc/NetworkManager/system-connections/ethernet-usb0.nmconnection
+14. Now edit the file we just created (using vi or nano) named `/etc/NetworkManager/system-connections/ethernet-usb0.nmconnection`
 
-- Note - You will be adding the lines for autoconnect and interface-name, and then modifying the line with "method=" to change auto to "shared":
+- Note - You will be adding the lines for `autoconnect` and `interface-name`, and then modifying the line with `method=` to change `auto` to `shared`:
 
 ```
 [connection]
@@ -78,7 +78,7 @@ method=auto
 [proxy]
 ```
 
-15. Create yet another new file (again with vi or nano) at /usr/local/sbin/usb-gadget.sh with the following contents:
+15. Create yet another new file (again with vi or nano) at `/usr/local/sbin/usb-gadget.sh` with the following contents:
 
 ```
 #!/bin/bash
@@ -92,7 +92,7 @@ nmcli con up ethernet-usb0
 chmod a+rx /usr/local/sbin/usb-gadget.sh
 ```
 
-17. Create your last new file (using vi or nano) named /lib/systemd/system/usbgadget.service with the following text:
+17. Create your last new file (using vi or nano) named `/lib/systemd/system/usbgadget.service` with the following text:
 
 ```
 [Unit]
@@ -121,13 +121,13 @@ systemctl enable usbgadget.service
 shutdown -r now
 ```
 
-20. To make sure everything went as it should, on your iPad or iPhone, go into Settings and confirm that you an "Ethernet" device listed underneath "Wi-Fi" in settings.  Tap on it and make sure you have an assigned "IP Address" (ie, it isn't blank).  If you do not have an assigned IP address, then something went wrong in the steps above - double check **EVERYTHING**!
+20. To make sure everything went as it should, on your iPad or iPhone, go into Settings and confirm that you an `Ethernet` device listed underneath `Wi-Fi` in settings.  Tap on it and make sure you have an assigned `IP Address` (ie, it isn't blank).  If you do not have an assigned IP address, then something went wrong in the steps above - double check **EVERYTHING**!
 
 21. To test that this is working as expected, you can do the following:
 
   a. Turn Airplane mode on (and confirm you don't have wifi enabled) to ensure you could only be using the USB-C to USB-C cable connected to your pi5 for the following steps
   
-  b. From "Blink" (or other iOS ssh app), connect to "<username>@<hostname>.local" where <username> and <hostname> are whatever you configured your pi5 with in step #4 above
+  b. From `Blink` (or other iOS ssh app), connect to `<username>@<hostname>.local` where `<username>` and `<hostname>` are whatever you configured your pi5 with in step #4 above
   
   c. Confirm you can successfully connect.  If you can connect, then this means you can now power AND connect to your pi5 over a simple USB-C to USB-C cable, no Wi-Fi required!
   
