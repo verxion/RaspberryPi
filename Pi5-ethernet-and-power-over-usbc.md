@@ -1,12 +1,12 @@
-## Abstract
+# Abstract
 
 This writeup explains how to configure your pi5 (from scratch) to allow ethernet over a USB-C to USB-C cable.  This allows you (for example) to plug your pi5 directly into a USB-C iPad or iPhone or Mac to both power it as well as connect to it over SSH **WITHOUT** requiring wifi.
 
-## Process
+# Process
 
-### As of 2024-03-13, here are the steps to get everything working from "scratch":
+As of 2024-03-13, here are the steps to get everything working from "scratch":
 
-### 1. Download and run the "Raspberry Pi Imager" (version at the time of this writing is v1.8.5)
+1. Download and run the "Raspberry Pi Imager" (version at the time of this writing is v1.8.5)
 
 ### 2. Raspberry Pi Device: Raspberry Pi 5, Operating System: Raspberry Pi OS (64-bit), Storage: Micro SD card
 
@@ -139,7 +139,7 @@ shutdown -r now
   
   d. Profit?   :)
 
-## Background Info
+# Background Info
 
 After "much success" with my pi4, I bought a pi5 and expected things to be more performant but just as smooth to set up.  I couldn't have been more wrong....
 
