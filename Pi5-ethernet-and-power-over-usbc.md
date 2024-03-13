@@ -6,7 +6,7 @@ This writeup explains how to configure your pi5 (from scratch) to allow ethernet
 
 As of 2024-03-13, here are the steps to get everything working from "scratch":
 
-1. Download and run the "Raspberry Pi Imager" (version at the time of this writing is v1.8.5)
+1. Download and run the `Raspberry Pi Imager` (version at the time of this writing is v1.8.5)
 
 2. Raspberry Pi Device: Raspberry Pi 5, Operating System: Raspberry Pi OS (64-bit), Storage: Micro SD card
 
@@ -14,9 +14,9 @@ As of 2024-03-13, here are the steps to get everything working from "scratch":
 
 4. Set your hostname, username and password, wireless LAN, and Locale settings
 
-5. Choose "Yes" to apply your OS customization settings
+5. Choose `Yes` to apply your OS customization settings
 
-6. Confirm you want to continue (assuming it is correctly listing your micro SD card) by clicking "Yes"
+6. Confirm you want to continue (assuming it is correctly listing your micro SD card) by clicking `Yes`
 
 7. Wait for the write and the verification to finish
 
@@ -26,7 +26,7 @@ As of 2024-03-13, here are the steps to get everything working from "scratch":
 
 [OWC Thunderbolt 4 Cable:] (https://www.amazon.com/dp/B0BLXLSDN5?ref=ppx_pop_mob_ap_share)
 
-9. Using an iOS app like "Blink" (or truly ANY SSH app), ssh into your pi5 using your previously (step 4) wifi and username/password settings.
+9. Using an iOS app like [Blink] (http://blink.sh) (or truly ANY SSH app), ssh into your pi5 using your previously (step 4) wifi and username/password settings.
 
 - For the uninitiated, you can use the hostname you set up in step 4 above postpended with `.local`.  So if the hostname you configured was `pi5`, you would type `ssh username@pi5.local` (where username is whatever you provided in step #4 above) in [Blink] (http://blink.sh) to connect...
   
@@ -36,7 +36,7 @@ As of 2024-03-13, here are the steps to get everything working from "scratch":
 
 - Alternatively you can pre-pend `sudo ` to the front of all the commands in this guide
 
-11. Edit (this guide assumes you are familiar with either vi or nano) the file `/boot/firmware/cmdline.txt` and add the following just AFTER "rootwait":
+11. Edit (this guide assumes you are familiar with either vi or nano) the file `/boot/firmware/cmdline.txt` and add the following just AFTER `rootwait`:
 
 ```
 modules-load=dwc2,g_ether
