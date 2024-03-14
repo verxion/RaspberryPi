@@ -4,7 +4,7 @@ This writeup explains how to configure your pi4 (from scratch) to allow ethernet
 
 # Process
 
-As of 2024-03-13, here are the steps to get everything working from "scratch":
+As of 2024-03-14, here are the steps to get everything working from "scratch":
 
 1. Download and run the `Raspberry Pi Imager` (version at the time of this writing is v1.8.5)
 
