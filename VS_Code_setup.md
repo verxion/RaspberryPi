@@ -20,7 +20,7 @@ These steps start with the official [Code-Server Site] (https://github.com/coder
 
 6. Run `sudo systemctl enable --now code-server@<user>` (where `<user>` is the user that will be using code server) to have systemd start code-server now and automatically restart it on bootup.
 
-7. Edit (using vi or nano) the file `~/.config/code-server/config.yaml`
+7. Edit (using vi or nano) the file `~/.config/code-server/config.yaml` (note that this should be in `/home/<user>`, NOT `/root`...
 
 8. Change the `bind-addr` from `127.0.0.1` to `0.0.0.0` (to allow access from any host on your network)
 
