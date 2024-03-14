@@ -28,6 +28,8 @@ As of 2024-03-13, here are the steps to get everything working from "scratch":
 
 9. Using an iOS app like [Blink] (http://blink.sh) (or truly ANY SSH app), ssh into your pi5 using your previously (step 4) wifi and username/password settings.
 
+- You may need to use your wireless router to find your pi4's address.  If you cannot find it, then use an ethernet cable to access it long enough to finish the configuration below.
+
 - For the uninitiated, you can use the hostname you set up in step 4 above postpended with `.local`.  So if the hostname you configured was `pi5`, you would type `ssh username@pi5.local` (where username is whatever you provided in step #4 above) in [Blink] (http://blink.sh) to connect...
   
 - Your initial connection will need you to trust the host key.  So beware that this is a one time aspect of this connection...
