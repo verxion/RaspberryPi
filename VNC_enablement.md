@@ -16,7 +16,7 @@ This is just some quick documentation about how to enable VNC on a new Raspberry
 
 7. Configuration file is `/etc/wayvnc/config` - configure your VNC client as appropriate
 
-8. **DO NOT LEAVE** it this way, but if you are struggling to authenticate with your VNC client, you can set both `enable_auth` and `enable_pam` to false
+8. **DO NOT LEAVE** it this way, but if you are struggling to authenticate with your VNC client, you can set both `enable_auth` and `enable_pam` to false.  (You can also use raspi-config to enable/disable VNC if you want to use this method for example ONLY when you are direct connected to your Raspberry Pi over USB-C...)
 
 9. Profit?  :)
 
