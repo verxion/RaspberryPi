@@ -24,33 +24,29 @@ These steps start with the official [Code-Server Site] (https://github.com/coder
 
 8. Change the `bind-addr` from `127.0.0.1` to `0.0.0.0` (to allow access from any host on your network)
 
-9. Change `auth` from `password` to `none` (this will be temporary and is being done so you will get an icon in step 16 below)
+9. Change your `password` from the random string of characters to something you choose (this won't be used until after step 18 below)
 
-10. Change your `password` from the random string of characters to something you choose (this won't be used until after step 18 below)
+10. Change `cert` from `false` to `true`.
 
-11. Restart `code-server` now that you have made these changes by issuing the following command: `systemctl restart code-server@<user>` (where `<user>` is the user that will be using code server)
+11. Finally, on the line below `cert`, add a new line containing the following text: `cert-host: <hostname>.local` where `<hostname>` is the hostname of your pi4.
 
-12. Launch Safari on your iPad and access the following URL: `http://<hostname>.local:8080` where `<hostname>` is your actual pi hostname...
+12. Stop `code-server` by issuing the following command: `systemctl stop code-server@<user>` (where `<user>` is the user that will be using code server)
 
-13. You should see a startup screen that says "Get Started with VS Code for the Web".
+13. Start `code-server` to read in these changes by issuing the following command: `systemctl start code-server@<user>` (where `<user>` is the user that will be using code server)
 
-14. For some reason, the VS Code server doesn't seem to allow you to connect securely if you set it up that way INITIALLY.  So, now that we've connected "insecurely", edit again (using vi or nano) the file `~/.config/code-server/config.yaml`.
+14. Launch Safari on your iPad and access the following URL: `https://<hostname>.local:8080` where `<hostname>` is your actual pi hostname...
 
-15. Change `auth` back to using a password (change `auth` from `none` back to `password`).  Also change  `cert` from `false` to `true`.  Finally, on the line below `cert`, add a new line containing the following text: `cert-host: <hostname>.local` where `<hostname>` is the hostname of your pi4.
+15. You should see a startup screen that says "Get Started with VS Code for the Web".
 
-16. Restart Code Server by issuing the following command: `sudo systemctl restart code-server@<user>` (where `<user>` is the user that will be using code server)
+16. Install Python support or whatever other extensions you wish.  The video linked above was from when apparently you had to do this manually from the commandline.  This issue seems to have been resolved since then, and you will be able to install directly from VS Code's UI.
 
-17. Re-launch Safari on your iPad and access now with the following secure URL: `https://<hostname>.local:8080` where `<hostname>` is your actual pi hostname.  Note that this time it will prompt you for the password you added in step #10 above.
+17. From this page in Safari, tap on the `Share` icon (box with an up arrow coming out of it)
 
-18. Install Python support or whatever other extensions you wish.  The video linked above was from when apparently you had to do this manually from the commandline.  This issue seems to have been resolved since then, and you will be able to install directly from VS Code's UI.
+18. Scroll down until you see the option to `Add to Home Screen` (tap this)
 
-19. From this page in Safari, tap on the `Share` icon (box with an up arrow coming out of it)
+19. Change the icon Name to something you like and tap `Add`.  (When you run this home screen "app", it will run full screen)
 
-20. Scroll down until you see the option to `Add to Home Screen` (tap this)
-
-21. Change the icon Name to something you like and tap `Add`
-
-22. Profit?  :)
+20. Profit?  :)
 
 # Background
 
