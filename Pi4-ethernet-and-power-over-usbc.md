@@ -1,6 +1,6 @@
 # Abstract
 
-This writeup explains how to configure your pi5 (from scratch) to allow ethernet over a USB-C to USB-C cable.  This allows you (for example) to plug your pi5 directly into a USB-C iPad or iPhone or Mac to both power it as well as connect to it over SSH **WITHOUT** requiring wifi.
+This writeup explains how to configure your pi4 (from scratch) to allow ethernet over a USB-C to USB-C cable.  This allows you (for example) to plug your pi5 directly into a USB-C iPad or iPhone or Mac to both power it as well as connect to it over SSH **WITHOUT** requiring wifi.
 
 # Process
 
@@ -8,7 +8,7 @@ As of 2024-03-13, here are the steps to get everything working from "scratch":
 
 1. Download and run the `Raspberry Pi Imager` (version at the time of this writing is v1.8.5)
 
-2. Raspberry Pi Device: Raspberry Pi 5, Operating System: Raspberry Pi OS (64-bit), Storage: Micro SD card
+2. Raspberry Pi Device: Raspberry Pi 4, Operating System: Raspberry Pi OS (64-bit), Storage: Micro SD card
 
 3. OS Customization: Edit Settings
 
@@ -143,11 +143,11 @@ shutdown -r now
 
 23. To test that this is working as expected, you can do the following:
 
-- Turn Airplane mode on (and confirm you don't have wifi enabled) to ensure you could only be using the USB-C to USB-C cable connected to your pi5 for the following steps
+- Turn Airplane mode on (and confirm you don't have wifi enabled) to ensure you could only be using the USB-C to USB-C cable connected to your pi4 for the following steps
   
-- From [Blink] (http://blink.sh) (or other iOS ssh app), connect to `<username>@<hostname>.local` where `<username>` and `<hostname>` are whatever you configured your pi5 with in step #4 above
+- From [Blink] (http://blink.sh) (or other iOS ssh app), connect to `<username>@<hostname>.local` where `<username>` and `<hostname>` are whatever you configured your pi4 with in step #4 above
   
-- Confirm you can successfully connect.  If you can connect, then this means you can now power AND connect to your pi5 over a simple USB-C to USB-C cable, no Wi-Fi required!
+- Confirm you can successfully connect.  If you can connect, then this means you can now power AND connect to your pi4 over a simple USB-C to USB-C cable, no Wi-Fi required!
   
 - Profit?   :)
 
