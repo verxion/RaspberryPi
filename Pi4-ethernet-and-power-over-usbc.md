@@ -56,7 +56,7 @@ dtoverlay=dwc2,dr_mode=peripheral
 libcomposite
 ```
 
-14. Edit (again, pick either vi or nano) the file `/etc/dhcpcd.conf` and add the following at the end of the file:
+14. Edit (again, pick either vi or nano) the new file `/etc/dhcpcd.conf` and add the following at the end of the file:
 
 ```
 denyinterfaces usb0
@@ -144,6 +144,8 @@ shutdown -r now
 22. To make sure everything went as it should, on your iPad or iPhone, go into Settings and confirm that you an `Ethernet` device listed underneath `Wi-Fi` in settings.  Tap on it and make sure you have an assigned `IP Address` (ie, it isn't blank).  If you do not have an assigned IP address, then something went wrong in the steps above - double check **EVERYTHING**!
 
 23. To test that this is working as expected, you can do the following:
+
+- Disconnect your pi4 (you can shut it down first with the command `shutdown now`)
 
 - Turn Airplane mode on (and confirm you don't have wifi enabled) to ensure you could only be using the USB-C to USB-C cable connected to your pi4 for the following steps
   
