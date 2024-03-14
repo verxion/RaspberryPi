@@ -10,13 +10,13 @@ These steps start with the official [Code-Server Site] (https://github.com/coder
 
 1. Run `sudo apt update` to find out if there are any packages that need to be upgraded
 
-2. Run `apt-get upgrade` to upgrade those packages so you are "current"
+2. Run `sudo apt-get upgrade` to upgrade those packages so you are "current"
 
 3. Run `sudo apt install nodejs` to install nodejs, which is a requirement for the VS Code install
 
 4. Run `sudo apt install npm` to install npm, which is also required
 
-5. Run `curl -fsSL https://code-server.dev/install.sh | sh` to install Code Server
+5. Run `sudo curl -fsSL https://code-server.dev/install.sh | sh` to install Code Server
 
 6. Run `sudo systemctl enable --now code-server@<user>` (where `<user>` is the user that will be using code server) to have systemd start code-server now and automatically restart it on bootup.
 
@@ -48,7 +48,7 @@ These steps start with the official [Code-Server Site] (https://github.com/coder
 
 20. Install Python support or whatever other extensions you wish.  The video linked above was from when apparently you had to do this manually from the commandline.  This issue seems to have been resolved since then, and you will be able to install directly from VS Code's UI.
 
-21. Start `code-server` now that you have made these changes by issuing the following command: `systemctl start code-server@<user>` (where `<user>` is the user that will be using code server)
+21. Start `code-server` now that you have made these changes by issuing the following command: `sudo systemctl start code-server@<user>` (where `<user>` is the user that will be using code server)
 
 22. Profit?  :)
 
