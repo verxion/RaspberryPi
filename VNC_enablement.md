@@ -2,6 +2,8 @@
 
 This is just some quick documentation about how to enable VNC on a new Raspberry Pi installation
 
+# Process
+
 1. From the commandline, run `sudo raspi-config`
 
 2. Choose option "3" - `Interface Options`
