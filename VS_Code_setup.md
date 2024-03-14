@@ -46,7 +46,9 @@ These steps start with the official [Code-Server Site] (https://github.com/coder
 
 19. Change the icon Name to something you like and tap `Add`.  (When you run this home screen "app", it will run full screen)
 
-20. Profit?  :)
+20. **OPTIONAL** step: You can copy the `~/.local/share/code-server/<hostname>_local.crt` file to your iOS device and install it for a more secure connection with no warnings.
+
+21. Profit?  :)
 
 # Background
 
