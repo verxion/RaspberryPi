@@ -2,6 +2,20 @@
 
 This writeup explains how to configure your pi5 (from scratch) to allow ethernet over a USB-C to USB-C cable.  This allows you (for example) to plug your pi5 directly into a USB-C iPad or iPhone or Mac to both power it as well as connect to it over SSH **WITHOUT** requiring wifi.
 
+# Addition (2025-01-15)
+
+If you are using an M4 iPad Pro, this step may be necessary:
+
+```
+rpi-eeprom-config -e
+```
+
+Add the following text at the bottom of the file, save, exit, reboot:
+
+```
+PSU_MAX_CURRENT=3000
+```
+
 # Process
 
 As of 2024-03-13, here are the steps to get everything working from "scratch":
